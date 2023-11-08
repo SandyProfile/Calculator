@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - By Sandeep Kalmodiya</title>
+
+
+    <!---------------     CSS File      -------------->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Noto+Sans+JP&family=Poppins:wght@600&family=Ubuntu:wght@300&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            /* text-align: center; */
+            color: orangered;
+            margin-bottom: 25px;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(60deg, #0a0a0a, #3e3e3e);
+        }
+
+        .container {
+            border: 2px solid rgb(87, 87, 87);
+            padding: 30px 35px;
+            border-radius: 15px;
+            background: transparent;
+            box-shadow: 0px 3px 15px rgba(120, 125, 130, 0.7);
+        }
+
+        input {
+            width: 310px;
+            font-size: 30px;
+            text-align: right;
+            border: none;
+            background: transparent;
+            box-shadow: 0px 3px 15px rgbs(20, 30, 40, 0.3);
+            color: #ffff;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        input::placeholder {
+            color: #ffff;
+        }
+
+        button {
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            font-size: 23px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: -4px -4px 10px rgba(200, 250, 300, 0.1);
+            cursor: pointer;
+            background-color: transparent;
+            color: #ffff;
+            scroll-behavior: smooth;
+        }
+
+        .equalBtn {
+            background-color: rgb(255, 108, 4);
+        }
+
+        .operateBtn {
+            color: rgb(0, 119, 26);
+        }
+    </style>
+</head>
+
+
+<!------------------      HTML File      -------------------->
+
+<body>
+    <div class="container">
+        <h1>Standard Calculator</h1>
+        <input type="text" placeholder="0" id="inputField">
+        <div class="calc">
+            <button class="operateBtn">AC</button>
+            <button class="operateBtn">DEL</button>
+            <button class="operateBtn">%</button>
+            <button class="operateBtn">/</button>
+        </div>
+        <div class="calc">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operateBtn">*</button>
+        </div>
+        <div class="calc">
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="operateBtn">-</button>
+        </div>
+        <div class="calc">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="operateBtn">+</button>
+        </div>
+        <div class="calc">
+            <button>00</button>
+            <button>0</button>
+            <button>.</button>
+            <button class="equalBtn">=</button>
+        </div>
+    </div>
+
+
+    <!-------------------   Script File    ---------------->
+
+    <script>
+        let input = document.getElementById('inputField');
+        let buttons = document.querySelectorAll('button');
+
+        let string = "";
+        let arr = Array.from(buttons);
+        arr.forEach(button => {
+            button.addEventListener('click', (btn) => {
+                if (btn.target.innerHTML == '=') {
+                    string = eval(string);
+                    input.value = string;
+                }
+
+                else if (btn.target.innerHTML == 'AC') {
+                    string = "";
+                    input.value = string;
+                }
+
+                else if (btn.target.innerHTML == 'DEL') {
+                    string = string.substring(0, string.length - 1);
+                    input.value = string;
+                }
+
+                else {
+                    string += btn.target.innerHTML;
+                    input.value = string;
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
